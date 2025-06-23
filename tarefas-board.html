@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quadro de Tarefas - GF2</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .board {
+            display: flex;
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            overflow-x: auto;
+            padding-bottom: 20px;
+        }
+
+        .column {
+            background: #f4f5f7;
+            border-radius: 12px;
+            min-width: 300px;
+            max-width: 350px;
+            padding: 16px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            transition: transform 0.2s ease;
+        }
+
+        .column:hover {
+            transform: translateY(-2px);
+        }
+
+        .column-header {
+            background: #fff;
+            padding: 12px 16px;
+            border-radius: 8px;
+            margin-bottom: 16px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .column-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #172b4d;
+            margin-bottom: 4px;
+        }
+
+        .column-count {
+            font-size: 0.9rem;
+            color: #6b778c;
+        }
+
+        .card {
+            background: white;
+            border-radius: 8px;
+            padding: 12px 16px;
+            margin-bottom: 12px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            border-left: 4px solid #0079bf;
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+
+        .card:hover {
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+            transform: translateX(2px);
+        }
+
+        .card:last-child {
+            margin-bottom: 0;
+        }
+
+        .card-title {
+            font-size: 1rem;
+            font-weight: 500;
+            color: #172b4d;
+            line-height: 1.4;
+        }
+
+        .card-status {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            margin-top: 8px;
+            background: #ddd;
+            color: #666;
+        }
+
+        .status-pending {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .status-progress {
+            background: #d1ecf1;
+            color: #0c5460;
+        }
+
+        .status-review {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            color: white;
+            opacity: 0.8;
+        }
+
+        @media (max-width: 768px) {
+            .board {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .column {
+                width: 100%;
+                max-width: 400px;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+        }
+
+        .add-card-btn {
+            width: 100%;
+            padding: 12px;
+            background: transparent;
+            border: 2px dashed #ddd;
+            border-radius: 8px;
+            color: #6b778c;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .add-card-btn:hover {
+            background: #f8f9fa;
+            border-color: #0079bf;
+            color: #0079bf;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>📋 Quadro de Tarefas</h1>
+        <p>GF2</p>
+    </div>
+
+    <div class="board">
+        <div class="column">
+            <div class="column-header">
+                <div class="column-title">Registro do Fundo DAYCOVAL</div>
+                <div class="column-count">2 tarefas</div>
+            </div>
+            <div class="card">
+                <div class="card-title">Cadastro da GF2</div>
+                <span class="card-status status-pending">Pendente</span>
+            </div>
+            <div class="card">
+                <div class="card-title">Transferencia CLUBE</div>
+                <span class="card-status status-pending">Pendente</span>
+            </div>
+            <button class="add-card-btn">+ Adicionar tarefa</button>
+        </div>
+
+        <div class="column">
+            <div class="column-header">
+                <div class="column-title">Regularização ANBIMA</div>
+                <div class="column-count">3 tarefas</div>
+            </div>
+            <div class="card">
+                <div class="card-title">Verificação de Pendencias</div>
+                <span class="card-status status-progress">Em Progresso</span>
+            </div>
+            <div class="card">
+                <div class="card-title">Mapear novos pedidos</div>
+                <span class="card-status status-pending">Pendente</span>
+            </div>
+            <div class="card">
+                <div class="card-title">Falar Monica</div>
+                <span class="card-status status-review">Aguardando</span>
+            </div>
+            <button class="add-card-btn">+ Adicionar tarefa</button>
+        </div>
+
+        <div class="column">
+            <div class="column-header">
+                <div class="column-title">Regularização CVM</div>
+                <div class="column-count">2 tarefas</div>
+            </div>
+            <div class="card">
+                <div class="card-title">Verificar se já temos login/senha</div>
+                <span class="card-status status-pending">Pendente</span>
+            </div>
+            <div class="card">
+                <div class="card-title">Falar Mônica</div>
+                <span class="card-status status-review">Aguardando</span>
+            </div>
+            <button class="add-card-btn">+ Adicionar tarefa</button>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>💡 Clique nos cards para interagir • Criação LAF</p>
+    </div>
+
+    <script>
+        // Adicionar interatividade básica
+        document.querySelectorAll('.card').forEach(card => {
+            card.addEventListener('click', function() {
+                const status = this.querySelector('.card-status');
+                const currentStatus = status.textContent;
+                
+                // Ciclo de status: Pendente -> Em Progresso -> Concluído -> Pendente
+                if (currentStatus === 'Pendente') {
+                    status.textContent = 'Em Progresso';
+                    status.className = 'card-status status-progress';
+                } else if (currentStatus === 'Em Progresso') {
+                    status.textContent = 'Concluído';
+                    status.className = 'card-status';
+                    status.style.background = '#d4edda';
+                    status.style.color = '#155724';
+                } else if (currentStatus === 'Concluído') {
+                    status.textContent = 'Pendente';
+                    status.className = 'card-status status-pending';
+                    status.style.background = '';
+                    status.style.color = '';
+                } else if (currentStatus === 'Aguardando') {
+                    status.textContent = 'Em Progresso';
+                    status.className = 'card-status status-progress';
+                }
+            });
+        });
+
+        // Funcionalidade dos botões de adicionar
+        document.querySelectorAll('.add-card-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const taskName = prompt('Digite o nome da nova tarefa:');
+                if (taskName) {
+                    const column = this.parentElement;
+                    const newCard = document.createElement('div');
+                    newCard.className = 'card';
+                    newCard.innerHTML = `
+                        <div class="card-title">${taskName}</div>
+                        <span class="card-status status-pending">Pendente</span>
+                    `;
+                    
+                    // Adicionar evento de click ao novo card
+                    newCard.addEventListener('click', function() {
+                        const status = this.querySelector('.card-status');
+                        const currentStatus = status.textContent;
+                        
+                        if (currentStatus === 'Pendente') {
+                            status.textContent = 'Em Progresso';
+                            status.className = 'card-status status-progress';
+                        } else if (currentStatus === 'Em Progresso') {
+                            status.textContent = 'Concluído';
+                            status.className = 'card-status';
+                            status.style.background = '#d4edda';
+                            status.style.color = '#155724';
+                        } else if (currentStatus === 'Concluído') {
+                            status.textContent = 'Pendente';
+                            status.className = 'card-status status-pending';
+                            status.style.background = '';
+                            status.style.color = '';
+                        }
+                    });
+                    
+                    column.insertBefore(newCard, this);
+                    
+                    // Atualizar contador
+                    const counter = column.querySelector('.column-count');
+                    const currentCount = parseInt(counter.textContent);
+                    counter.textContent = `${currentCount + 1} tarefas`;
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+
